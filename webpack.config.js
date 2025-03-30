@@ -2,23 +2,7 @@ import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
 
-export default async () => {
-
-  let response = await fetch('https://rickandmortyapi.com/api/character?page=13');
-  let json = await response.json();
-  let characters = json.results;
-  let pages = [];
-  characters.forEach(character => {
-    let page = new HtmlWebpackPlugin({
-      template: "./src/character.njk",
-      filename: 'character_' + character.id + '.html',
-      templateParameters: {
-        character
-      },
-    });
-    pages.push(page);
-  });
-  return{
+export default {
   entry: "./src/index.js",
   output: {
     filename: "main.js",
@@ -40,41 +24,22 @@ export default async () => {
       {
         test: /\.scss$/i,
         use: ["style-loader"
-          ,"css-loader",
+          , "css-loader",
           {
             loader: "sass-loader",
-            options:{
-              sassOptions:{
-                quietDeps:true
-              }
-            }
-          }
+            options: {
+              sassOptions: {
+                quietDeps: true
+              },
+            },
+          },
         ],
       },
-      {
-        test: /\.njk$/,
-        use: [
-            {
-                loader: 'simple-nunjucks-loader',
-                options: {}
-            }
-        ]
-    }
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.njk",
-      templateParameters: {
-        name:'Mikk',
-        characters, //.characters: characters 
-      }
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'about.html',
-      template: "./src/about.njk",
-    }),
-    ...pages
+      template: "./src/index.html",
+    })
   ],
-};
 };

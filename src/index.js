@@ -1,2 +1,7 @@
 import './style.scss';
-console.log('hello TA23A');
+import {createApp} from 'vue';
+
+import app from './App vue';
+
+const app = createApp(App);
+app.mount('#app');

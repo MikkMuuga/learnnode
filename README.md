@@ -1,1 +1,3 @@
 # learnnode
+
+PEAR,CHERRY,APPLE

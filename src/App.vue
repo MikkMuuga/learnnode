@@ -1,11 +1,17 @@
 <script setup>
+
 import { ref } from 'vue';
+import Modal from './components/Modal.vue';
+import ImgModal from './components/imgModal.vue';
+
 
 let modalActive = ref(false);
+let modalActive2 = ref(false);
+let modalActive3 = ref(false);
+
 
 document.body.addEventListener('keydown', event => {
-  console.log(event);
-  if(event.key === 'Escape'){
+  if (event.key === 'Escape') {
     modalActive.value = false;
   }
 });
@@ -13,20 +19,29 @@ document.body.addEventListener('keydown', event => {
 
 <template>
   <div class="container">
-    <section class="section">
-      <button class="button is-primary" @click="modalActive=true" > Modal active</button>
+    <section class="button">
+      <div class="button">
+        <button class="button is-primary" @click="modalActive = true"> Modal Active</button>
+        <button class="button is-link" @click="modalActive2 = true"> Modal 2 Active</button>
+        <button class="button is-danger" @click="modalActive3 = true"> Modal 3 Active</button>
+      </div>
     </section>
   </div>
-  
-  <div class="modal" :class="{ 'is-active': modalActive }">
-    <div class="modal-background" @click="modalActive=false"></div>
-    <div class="modal-content">
-      <p class="image is-4by3">
-        <img src="https://bulma.io/assets/images/placeholders/1289x960.png" alt="">
-      </p>
+
+  <ImgModal :active="modalActive" @close="modalActive = false" url="https://picsum.photos/seed/mikk/200/300?r=1">
+  </ImgModal>
+  <ImgModal :active="modalActive2" @close="modalActive2 = false" url="https://picsum.photos/seed/miko/200/300?r=2">
+  </ImgModal>
+  <Modal :active="modalActive3" @close="modalActive3 = false">
+    <div class="notification is-success">
+      <button @click="modalActive3 = false" class="delete"></button>
+      Primar lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
+      dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta
+      nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
+      diam, et dictum <a>felis venenatis</a> efficitur.
     </div>
-    <button class="modal-close is-large" @click="modalActive=false" arial-label="close"></button>
-  </div>
+  </Modal>
+
 
 
 </template>

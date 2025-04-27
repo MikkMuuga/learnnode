@@ -1,16 +1,26 @@
 <script setup>
 
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import ItemList from './ItemList.vue';
 
 let message = ref('');
-let items = ref(['kana', 'viin', 'lehm']);
+let i = 1;
+let items = ref([
+  { id: i++, name: 'kana', isDone: true },
+  { id: i++, name: 'viin', isDone: false },
+  { id: i++, name: 'lehm', isDone: false },
+  { id: i++, name: 'sool', isDone: true },
+]);
 
 function addItem() {
   if (message.value.trim() !== '') {
-    items.value.push(message.value.trim());
+    items.value.push({ id: i++, name: message.value.trim(), isDone: false });
   }
   message.value = '';
 }
+
+let doneItems = computed(() => items.value.filter(item => item.isDone));
+let ToDoItems = computed(() => items.value.filter(item => !item.isDone));
 
 </script>
 
@@ -25,11 +35,12 @@ function addItem() {
           Add item
         </button>
       </div>
-    </div class="container">
-    <h3>all items</h3>
-    <ul>
-      <li v-for="item in items">{{ item }}</li>
-    </ul>
+    </div>  
+    <div class="content">
+      <ItemList :items="items" title="All Items"></ItemList>
+      <ItemList :items="doneitems" title="Done Items"></ItemList>
+      <ItemList :items="ToDoitems" title="ToDo Items"></ItemList>
+    </div>
   </div>
 </template>
 

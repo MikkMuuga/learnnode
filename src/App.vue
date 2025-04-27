@@ -1,47 +1,34 @@
 <script setup>
+import { ref } from 'vue';
 
-import { computed, ref } from 'vue';
-import ItemList from './ItemList.vue';
+let modalActive = ref(false);
 
-let message = ref('');
-let i = 1;
-let items = ref([
-  { id: i++, name: 'kana', isDone: true },
-  { id: i++, name: 'viin', isDone: false },
-  { id: i++, name: 'lehm', isDone: false },
-  { id: i++, name: 'sool', isDone: true },
-]);
-
-function addItem() {
-  if (message.value.trim() !== '') {
-    items.value.push({ id: i++, name: message.value.trim(), isDone: false });
+document.body.addEventListener('keydown', event => {
+  console.log(event);
+  if(event.key === 'Escape'){
+    modalActive.value = false;
   }
-  message.value = '';
-}
-
-let doneItems = computed(() => items.value.filter(item => item.isDone));
-let ToDoItems = computed(() => items.value.filter(item => !item.isDone));
-
+});
 </script>
 
 <template>
-  <div class="container mt-2">
-    <div class="field has-addons">
-      <div class="control">
-        <input class="input" type="text" v-model="message" @keypress.enter="addItem">
-      </div>
-      <div class="control">
-        <button class="button is-info" @click="addItem">
-          Add item
-        </button>
-      </div>
-    </div>  
-    <div class="content">
-      <ItemList :items="items" title="All Items"></ItemList>
-      <ItemList :items="doneitems" title="Done Items"></ItemList>
-      <ItemList :items="ToDoitems" title="ToDo Items"></ItemList>
-    </div>
+  <div class="container">
+    <section class="section">
+      <button class="button is-primary" @click="modalActive=true" > Modal active</button>
+    </section>
   </div>
+  
+  <div class="modal" :class="{ 'is-active': modalActive }">
+    <div class="modal-background" @click="modalActive=false"></div>
+    <div class="modal-content">
+      <p class="image is-4by3">
+        <img src="https://bulma.io/assets/images/placeholders/1289x960.png" alt="">
+      </p>
+    </div>
+    <button class="modal-close is-large" @click="modalActive=false" arial-label="close"></button>
+  </div>
+
+
 </template>
 
 <style></style>

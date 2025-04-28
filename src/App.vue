@@ -1,17 +1,23 @@
 <script setup>
 import Tabs from './components/Tabs.vue';
-let titles = [
-  { title: 'Pictures', id: 1 },
-  { title: 'Music', id: 2 },
-  { title: 'Videos', id: 3 },
-  { title: 'Documents', id: 4 },
-];
+import Modals from './pages/Modals.vue';
+import ToDo from './pages/ToDo.vue';
+
+let titles = ['ToDo', 'Modals'];
+let contents = [ToDo, Modals];
+let activeTab = ref(0);
+
+function change(key) {
+  console.log(key);
+  activeTab.value = key;
+
+}
 
 </script>
 
 <template>
-  <Tabs :items="titles"></Tabs>
-
+  <Tabs :items="titles" @change="change"></Tabs>
+  <component :is="contents[activeTab]"></component>
 </template>
 
 <style></style>

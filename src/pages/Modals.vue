@@ -1,14 +1,12 @@
 <script setup>
-
 import { ref } from 'vue';
-import Modal from './components/Modal.vue';
-import ImgModal from './components/imgModal.vue';
 
+import Modal from '../components/Modal.vue';
+import ImgModal from '../components/ImgModal.vue';
 
-let modalActive = ref(false);
-let modalActive2 = ref(false);
-let modalActive3 = ref(false);
-
+const modalActive = ref(false);
+const modalActive2 = ref(false);
+const modalActive3 = ref(false);
 
 document.body.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
@@ -16,7 +14,6 @@ document.body.addEventListener('keydown', event => {
   }
 });
 </script>
-
 <template>
   <div class="container">
     <section class="button">
@@ -38,10 +35,9 @@ document.body.addEventListener('keydown', event => {
       Primar lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
       dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta
       nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
-      diam, et dictum <a>felis venenatis</a> efficitur.
+      diam, et dictum <a href="#">felis venenatis</a> efficitur.
     </div>
   </Modal>
-
 
 
 </template>

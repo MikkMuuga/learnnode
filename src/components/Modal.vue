@@ -1,5 +1,5 @@
 <script setup>
-    defineProps(['active', 'url', 'html']);
+    defineProps(['active', 'html']);
 
     const emit = defineEmits(['close']);
 

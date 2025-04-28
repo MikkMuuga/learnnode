@@ -3,15 +3,10 @@
 import {ref} from 'vue';
 let joke = ref('');
 
-fetch('https://api.chucknorris.io/jokes/random').then(response => {
-    return response.json();
-}).then(data => {
-    console.log(data);
-    joke.value = data.value;
-}).catch(error => {
-    console.error('Error fetching joke:', error);
-});
-
+let response = await fetch('https://api.chucknorris.io/jokes/random');
+let data = await response.json();
+console.log(data);
+joke.value = data.value;
 </script>
 
 <template>

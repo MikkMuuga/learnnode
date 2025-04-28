@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 import Tabs from './components/Tabs.vue';
 
 
@@ -8,12 +8,13 @@ import Tabs from './components/Tabs.vue';
 <template>
   <Tabs></Tabs>
   <div class="container">
-    <section class ="section">
-      <RouterView></RouterView>
+    <section class="section">
+      <Suspense>
+        <RouterView></RouterView>
+      </Suspense>
     </section>
   </div>
 
 </template>
 
-<style>
-</style>
+<style></style>

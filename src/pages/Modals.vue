@@ -15,14 +15,10 @@ document.body.addEventListener('keydown', event => {
 });
 </script>
 <template>
-  <div class="container">
-    <section class="button">
-      <div class="button">
-        <button class="button is-primary" @click="modalActive = true"> Modal Active</button>
-        <button class="button is-link" @click="modalActive2 = true"> Modal 2 Active</button>
-        <button class="button is-danger" @click="modalActive3 = true"> Modal 3 Active</button>
-      </div>
-    </section>
+  <div class="button">
+    <button class="button is-primary" @click="modalActive = true"> Modal Active</button>
+    <button class="button is-link" @click="modalActive2 = true"> Modal 2 Active</button>
+    <button class="button is-danger" @click="modalActive3 = true"> Modal 3 Active</button>
   </div>
 
   <ImgModal :active="modalActive" @close="modalActive = false" url="https://picsum.photos/seed/mikk/200/300?r=1">

@@ -10,6 +10,7 @@ const info = ref([]);
 const currentPage = ref(1);
 const searchValue = ref('');
 const erro = ref('');
+const searchTimeout = null;
 
 await getCharacters('https://rickandmortyapi.com/api/character');
 
@@ -52,16 +53,19 @@ async function page(page) {
 }
 
 async function search(){
-    error.value='';
+    clearTimeout(searchTimeout);
+    searchTimeout =setTimeout(async () => {
+        error.value='';
     currentPage.value = 1;
     await getCharacters();
+    }, 1000);
 }
 
 </script>
 <template>
     <div class="field has-addons">
         <div class="control is-expanded">
-            <input v-model="searchValue" class="input" type="text" placeholder="Find character">
+            <input @input="search" v-model="searchValue" class="input" type="text" placeholder="Find character">
         </div>
         <div class="control">
             <button @click="search" class="button is-info">

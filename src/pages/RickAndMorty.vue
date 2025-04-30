@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { onMOunted ,ref } from 'vue';
+import { onMounted ,ref } from 'vue';
 import CharacterCard from '../components/CharacterCard.vue';
 import SimplePagination from '../components/SimplePagination.vue';
 import Pagination from '../components/Pagination.vue';
@@ -57,6 +57,7 @@ async function search(){
     searchTimeout =setTimeout(async () => {
         error.value='';
     currentPage.value = 1;
+    characters.value = [];
     await getCharacters();
     }, 1000);
 }

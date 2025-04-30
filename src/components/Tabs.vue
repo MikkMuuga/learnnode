@@ -1,8 +1,8 @@
 <script setup>
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 
-const router = useRouter()
-const route = useRoute()
+const router = useRouter();
+const route = useRoute();
 
 console.log(router.getRoutes(), route)
 

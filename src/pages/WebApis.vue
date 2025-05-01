@@ -1,6 +1,7 @@
 <script setup>
 
 function vibrate() {
+    if(!navigator.vibrate) 
     navigator.vibrate(200);
 }
 

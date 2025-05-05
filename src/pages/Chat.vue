@@ -8,15 +8,13 @@ let input = ref('');
 let res = await axios.get('https://localhost:3000');
 messages.value = res.data;
 
-setInterval(async () => {
-    let date = messages.value[messages.value.length - 1]?.date ?? null;
-    let res = await axios.get('https://localhost:3000', {
-    params: {
-        date: new date(date)
-    }
-    });
-    messages.value.push(...res.data);
-}, 1000);
+const eventSource = new EventSource('https://localhost:3000/sse');
+
+eventSorce.addEventListener('newmessage', (event) => {
+    console.log(event);
+    let data = JSON.parse(event.data);
+    messages.value.push(...data);
+});
 
 async function send() {
     await axios.post('https://localhost:3000', {

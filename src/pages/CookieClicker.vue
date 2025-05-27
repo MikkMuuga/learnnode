@@ -1,28 +1,13 @@
 <script setup>
-import { useRouter} from 'vue-router'
-
-const router = useRouter();
-console.log(router.getRoutes());
-
-</script>
-
-<template>
-    <div class="columns">
-        <div class="column">First column</div>
-        <div class="column">Second column</div>
-        <div class="column">Third column</div>
-    </div>
-
-</template><script setup>
 import { computed, onUnmounted, ref } from 'vue';
 
 let cookies = ref(0);
 
 let buildings = ref([
-    { name: 'Cursor', price: 30, count: 0, cps: 0.5 }, //cps- click per second
-    { name: 'Grandma', price: 200, count: 0, cps: 5 },
-    { name: 'Farm', price: 10000, count: 0, cps: 50 },
-    { name: 'Factory', price: 100000, count: 0, cps: 1000 },
+    { name: 'Cursor', price: 15, count: 0, cps: 0.1 },
+    { name: 'Grandma', price: 100, count: 0, cps: 1 },
+    { name: 'Farm', price: 1000, count: 0, cps: 10 },
+    { name: 'Factory', price: 10000, count: 0, cps: 100 },
 ]);
 
 let cps = computed(() => {

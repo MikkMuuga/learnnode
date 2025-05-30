@@ -1,8 +1,7 @@
 <script setup>
-defineProps(['active', 'url']);
 import Modal from './Modal.vue';
 
-
+defineProps(['active', 'url']);
 </script>
 
 <template>

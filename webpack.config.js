@@ -6,6 +6,7 @@ export default {
   output: {
     filename: "main.js",
     path: path.resolve(import.meta.dirname, "dist"),
+    assetModuleFilename: '[name][ext][query]',
   },
   devServer: {
     static: {
@@ -15,7 +16,7 @@ export default {
     port: 9000,
     historyApiFallback: true,
     allowedHosts: "all",
-    },
+  },
   module: {
     rules: [
       {
@@ -24,13 +25,14 @@ export default {
       },
       {
         test: /\.scss$/i,
-        use: ["style-loader"
-          , "css-loader",
+        use: [
+          "style-loader",
+          "css-loader",
           {
             loader: "sass-loader",
             options: {
               sassOptions: {
-                quietDeps: true
+                quietDeps: true,
               },
             },
           },
@@ -39,7 +41,11 @@ export default {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [

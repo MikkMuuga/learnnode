@@ -1,8 +1,6 @@
 <script setup>
 defineProps(['info']);
 
-
-
 </script>
 
 <template>
